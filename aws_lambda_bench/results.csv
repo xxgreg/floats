@@ -1,0 +1,36 @@
+arch,asm enabled,function,data size,ns/op,ns/el,asm perf
+X86,asm,Add,600,96,0.16,4.219
+X86,asm,AddTo,600,96,0.16,4.146
+X86,asm,Mul,600,256,0.43,2.270
+X86,asm,MulTo,600,98,0.16,3.051
+X86,asm,Add Gonum,600,154,0.26,2.610
+X86,asm,AddTo Gonum,600,154,0.26,2.610
+X86,asm,Mul Gonum,600,665,1.11,0.860
+X86,asm,MulTo Gonum,600,392,0.65,0.755
+,,,,,,
+ARM,asm,Add,600,246,0.41,1.996
+ARM,asm,AddTo,600,248,0.41,1.988
+ARM,asm,Mul,600,246,0.41,2.000
+ARM,asm,MulTo,600,248,0.41,1.988
+ARM,asm,Add Gonum,600,738,1.23,1.000
+ARM,asm,AddTo Gonum,600,739,1.23,1.000
+ARM,asm,Mul Gonum,600,491,0.82,1.002
+ARM,asm,MulTo Gonum,600,493,0.82,1.000
+,,,,,,
+X86,noasm,Add,600,405,0.68,
+X86,noasm,AddTo,600,398,0.66,
+X86,noasm,Mul,600,581,0.97,
+X86,noasm,MulTo,600,299,0.50,
+X86,noasm,Add Gonum,600,402,0.67,
+X86,noasm,AddTo Gonum,600,402,0.67,
+X86,noasm,Mul Gonum,600,572,0.95,
+X86,noasm,MulTo Gonum,600,296,0.49,
+,,,,,,
+ARM,noasm,Add,600,491,0.82,
+ARM,noasm,AddTo,600,493,0.82,
+ARM,noasm,Mul,600,492,0.82,
+ARM,noasm,MulTo,600,493,0.82,
+ARM,noasm,Add Gonum,600,738,1.23,
+ARM,noasm,AddTo Gonum,600,739,1.23,
+ARM,noasm,Mul Gonum,600,492,0.82,
+ARM,noasm,MulTo Gonum,600,493,0.82,

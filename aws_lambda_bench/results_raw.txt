@@ -1,0 +1,250 @@
+using_asm true num_cpu 2 lambda_mem 2048
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 63
+model name	: Intel(R) Xeon(R) Processor @ 2.50GHz
+stepping	: 2
+microcode	: 0x1
+cpu MHz		: 2500.012
+cache size	: 33792 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm cpuid_fault invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid smap xsaveopt arat md_clear arch_capabilities
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs
+bogomips	: 5000.02
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 63
+model name	: Intel(R) Xeon(R) Processor @ 2.50GHz
+stepping	: 2
+microcode	: 0x1
+cpu MHz		: 2500.012
+cache size	: 33792 KB
+physical id	: 0
+siblings	: 2
+core id		: 1
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm cpuid_fault invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid smap xsaveopt arat md_clear arch_capabilities
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs
+bogomips	: 5000.02
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+[0 1 2 3 4 5 6 7 8 9]
+function,asm,elements,ns/op
+Add,asm,8,7
+AddTo,asm,8,9
+Mul,asm,8,58
+MulTo,asm,8,9
+Add Gonum,asm,8,8
+AddTo Gonum,asm,8,9
+Mul Gonum,asm,8,57
+MulTo Gonum,asm,8,9
+Add,asm,15,13
+AddTo,asm,15,14
+Mul,asm,15,61
+MulTo,asm,15,14
+Add Gonum,asm,15,11
+AddTo Gonum,asm,15,12
+Mul Gonum,asm,15,284
+MulTo Gonum,asm,15,13
+Add,asm,600,96
+AddTo,asm,600,96
+Mul,asm,600,256
+MulTo,asm,600,98
+Add Gonum,asm,600,154
+AddTo Gonum,asm,600,154
+Mul Gonum,asm,600,665
+MulTo Gonum,asm,600,392
+
+
+using_asm true num_cpu 2 lambda_mem 2048
+processor	: 0
+BogoMIPS	: 243.75
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp ssbs
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x3
+CPU part	: 0xd0c
+CPU revision	: 1
+processor	: 1
+BogoMIPS	: 243.75
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp ssbs
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x3
+CPU part	: 0xd0c
+CPU revision	: 1
+[0 1 2 3 4 5 6 7 8 9]
+function,asm,elements,ns/op
+Add,asm,8,10
+AddTo,asm,8,13
+Mul,asm,8,10
+MulTo,asm,8,13
+Add Gonum,asm,8,17
+AddTo Gonum,asm,8,20
+Mul Gonum,asm,8,11
+MulTo Gonum,asm,8,12
+Add,asm,15,16
+AddTo,asm,15,18
+Mul,asm,15,16
+MulTo,asm,15,19
+Add Gonum,asm,15,25
+AddTo Gonum,asm,15,27
+Mul Gonum,asm,15,16
+MulTo Gonum,asm,15,18
+Add,asm,600,246
+AddTo,asm,600,248
+Mul,asm,600,246
+MulTo,asm,600,248
+Add Gonum,asm,600,738
+AddTo Gonum,asm,600,739
+Mul Gonum,asm,600,491
+MulTo Gonum,asm,600,493
+
+
+using_asm false num_cpu 2 lambda_mem 2048
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 63
+model name	: Intel(R) Xeon(R) Processor @ 2.50GHz
+stepping	: 2
+microcode	: 0x1
+cpu MHz		: 2500.004
+cache size	: 33792 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm cpuid_fault invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid smap xsaveopt arat md_clear arch_capabilities
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 63
+model name	: Intel(R) Xeon(R) Processor @ 2.50GHz
+stepping	: 2
+microcode	: 0x1
+cpu MHz		: 2500.004
+cache size	: 33792 KB
+physical id	: 0
+siblings	: 2
+core id		: 1
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm cpuid_fault invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid smap xsaveopt arat md_clear arch_capabilities
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+[0 1 2 3 4 5 6 7 8 9]
+function,asm,elements,ns/op
+Add,noasm,8,8
+AddTo,noasm,8,8
+Mul,noasm,8,54
+MulTo,noasm,8,7
+Add Gonum,noasm,8,11
+AddTo Gonum,noasm,8,10
+Mul Gonum,noasm,8,54
+MulTo Gonum,noasm,8,7
+Add,noasm,15,12
+AddTo,noasm,15,13
+Mul,noasm,15,289
+MulTo,noasm,15,10
+Add Gonum,noasm,15,16
+AddTo Gonum,noasm,15,16
+Mul Gonum,noasm,15,289
+MulTo Gonum,noasm,15,10
+Add,noasm,600,405
+AddTo,noasm,600,398
+Mul,noasm,600,581
+MulTo,noasm,600,299
+Add Gonum,noasm,600,402
+AddTo Gonum,noasm,600,402
+Mul Gonum,noasm,600,572
+MulTo Gonum,noasm,600,296
+
+using_asm false num_cpu 2 lambda_mem 2048
+processor	: 0
+BogoMIPS	: 243.75
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp ssbs
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x3
+CPU part	: 0xd0c
+CPU revision	: 1
+processor	: 1
+BogoMIPS	: 243.75
+Features	: fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp ssbs
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x3
+CPU part	: 0xd0c
+CPU revision	: 1
+[0 1 2 3 4 5 6 7 8 9]
+function,asm,elements,ns/op
+Add,noasm,8,11
+AddTo,noasm,8,12
+Mul,noasm,8,11
+MulTo,noasm,8,12
+Add Gonum,noasm,8,17
+AddTo Gonum,noasm,8,20
+Mul Gonum,noasm,8,11
+MulTo Gonum,noasm,8,12
+Add,noasm,15,16
+AddTo,noasm,15,18
+Mul,noasm,15,16
+MulTo,noasm,15,18
+Add Gonum,noasm,15,25
+AddTo Gonum,noasm,15,27
+Mul Gonum,noasm,15,16
+MulTo Gonum,noasm,15,18
+Add,noasm,600,491
+AddTo,noasm,600,493
+Mul,noasm,600,492
+MulTo,noasm,600,493
+Add Gonum,noasm,600,738
+AddTo Gonum,noasm,600,739
+Mul Gonum,noasm,600,492
+MulTo Gonum,noasm,600,493
+
