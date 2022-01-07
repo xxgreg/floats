@@ -1,0 +1,240 @@
+
+600 Element results
+
+AWS Lambda X86   ~4x faster than NoAsm (i.e. 4x64 in 256bit registers)
+
+Add 600 12652831	             95.97 ns/op 0.15833333333333333 ns/el
+AddTo 600 12211368	             98.01 ns/op 0.16333333333333333 ns/el
+Mul 600  4702761	             256.0 ns/op 0.425 ns/el
+MulTo 600 12380132	             99.19 ns/op 0.165 ns/el
+Add Gonum 600  7710074	         156.7 ns/op 0.26 ns/el
+AddTo Gonum 600  7609507	     157.4 ns/op 0.26166666666666666 ns/el
+Mul Gonum 600  1775584	         674.8 ns/op 1.1233333333333333 ns/el
+MulTo Gonum 600  3037700	     397.5 ns/op 0.6616666666666666 ns/el
+
+
+AWS Lambda ARM    ~2x faster than NoAsm (i.e. 2x64 in 128bit registers)
+
+Add 600  4869952	              246.4 ns/op 0.41 ns/el
+AddTo 600  4807711	              250.4 ns/op 0.4166666666666667 ns/el
+Mul 600  4869013	              246.4 ns/op 0.41 ns/el
+MulTo 600  4814138	              249.3 ns/op 0.415 ns/el
+Add Gonum 600  1624969	          738.4 ns/op 1.23 ns/el
+AddTo Gonum 600  1622308	      739.6 ns/op 1.2316666666666667 ns/el
+Mul Gonum 600  2438167	          492.0 ns/op 0.8183333333333334 ns/el
+MulTo Gonum 600  2429725	      493.8 ns/op 0.8216666666666667 ns/el
+
+
+AWS Lambda ARM NoASM
+
+Add 600  2438160	               492.0 ns/op 0.82 ns/el
+AddTo 600  2429890	               493.9 ns/op 0.8216666666666667 ns/el
+Mul 600  2433016	               493.6 ns/op 0.8216666666666667 ns/el
+MulTo 600  2429419	               493.6 ns/op 0.8216666666666667 ns/el
+Add Gonum 600  1622175	           738.6 ns/op 1.23 ns/el
+AddTo Gonum 600  1622090	       739.6 ns/op 1.2316666666666667 ns/el
+Mul Gonum 600  2438176	           492.0 ns/op 0.82 ns/el
+MulTo Gonum 600  2428812	       493.7 ns/op 0.8216666666666667 ns/el
+
+AWS Lambda X86 NoASM
+
+Add 600 3007174                    412.2 ns/op 0.6866666666666666 ns/el
+AddTo 600 2840598                  404.2 ns/op 0.6733333333333333 ns/el
+Mul 600 2060334                    583.9 ns/op 0.9716666666666667 ns/el
+MulTo 600 3970806                  301.2 ns/op 0.5016666666666667 ns/el
+Add Gonum 600 2950712              407.1 ns/op 0.6783333333333333 ns/el
+AddTo Gonum 600 2921884            407.4 ns/op 0.6783333333333333 ns/el
+Mul Gonum 600 2058940              586.1 ns/op 0.9766666666666667 ns/el
+MulTo Gonum 600 3992178            301.0 ns/op 0.5 ns/el
+
+
+
+Full results
+
+AWS Lambda X86
+
+Add 8 159084444	                 7.494 ns/op 0.875 ns/el
+AddTo 8 133359657	             8.989 ns/op 1 ns/el
+Mul 8 19971916	                 59.52 ns/op 7.375 ns/el
+MulTo 8 133228833	             9.045 ns/op 1.125 ns/el
+Add Gonum 8 137250850	         8.661 ns/op 1 ns/el
+AddTo Gonum 8 121352053	         9.914 ns/op 1.125 ns/el
+Mul Gonum 8 20961717	         58.48 ns/op 7.25 ns/el
+MulTo Gonum 8 125438613	         9.383 ns/op 1.125 ns/el
+
+Add 64 76317031	                 15.93 ns/op 0.234375 ns/el
+AddTo 64 73069480	             16.53 ns/op 0.25 ns/el
+Mul 64  7702783	                 157.5 ns/op 2.453125 ns/el
+MulTo 64 70891106	             16.75 ns/op 0.25 ns/el
+Add Gonum 64 52906203	         22.51 ns/op 0.34375 ns/el
+AddTo Gonum 64 49393732	         24.17 ns/op 0.375 ns/el
+Mul Gonum 64  3721804	         326.2 ns/op 5.09375 ns/el
+MulTo Gonum 64 25395849	         45.40 ns/op 0.703125 ns/el
+
+Add 600 12652831	             95.97 ns/op 0.15833333333333333 ns/el
+AddTo 600 12211368	             98.01 ns/op 0.16333333333333333 ns/el
+Mul 600  4702761	             256.0 ns/op 0.425 ns/el
+MulTo 600 12380132	             99.19 ns/op 0.165 ns/el
+Add Gonum 600  7710074	         156.7 ns/op 0.26 ns/el
+AddTo Gonum 600  7609507	     157.4 ns/op 0.26166666666666666 ns/el
+Mul Gonum 600  1775584	         674.8 ns/op 1.1233333333333333 ns/el
+MulTo Gonum 600  3037700	     397.5 ns/op 0.6616666666666666 ns/el
+
+Add 1000  7718362	             157.3 ns/op 0.157 ns/el
+AddTo 1000  7615791	             156.9 ns/op 0.156 ns/el
+Mul 1000  3747777	             320.6 ns/op 0.32 ns/el
+MulTo 1000  7658072	             156.2 ns/op 0.156 ns/el
+Add Gonum 1000  4706452	         256.4 ns/op 0.256 ns/el
+AddTo Gonum 1000  4634112	     255.9 ns/op 0.255 ns/el
+Mul Gonum 1000  1271943	         939.9 ns/op 0.939 ns/el
+MulTo Gonum 1000  1817187	     665.7 ns/op 0.665 ns/el
+
+Add 10000   479643	              2476 ns/op 0.2476 ns/el
+AddTo 10000   387361	          3158 ns/op 0.3157 ns/el
+Mul 10000   474820	              2627 ns/op 0.2627 ns/el
+MulTo 10000   383636	          3166 ns/op 0.3166 ns/el
+Add Gonum 10000   306441	      3930 ns/op 0.393 ns/el
+AddTo Gonum 10000   282840	      4218 ns/op 0.4217 ns/el
+Mul Gonum 10000   178467	      6852 ns/op 0.6852 ns/el
+MulTo Gonum 10000   178843	      6730 ns/op 0.673 ns/el
+
+
+AWS Lambda ARM
+
+Add 8 100000000	                  10.60 ns/op 1.25 ns/el
+AddTo 8 90738193	              13.23 ns/op 1.625 ns/el
+Mul 8 100000000	                  10.63 ns/op 1.25 ns/el
+MulTo 8 90641745	              13.22 ns/op 1.625 ns/el
+Add Gonum 8 68670898	          17.47 ns/op 2.125 ns/el
+AddTo Gonum 8 58982475	          20.31 ns/op 2.5 ns/el
+Mul Gonum 8 100000000	          11.22 ns/op 1.375 ns/el
+MulTo Gonum 8 93573766	          12.82 ns/op 1.5 ns/el
+
+Add 64 37859548	                  31.65 ns/op 0.484375 ns/el
+AddTo 64 34822282	              34.47 ns/op 0.53125 ns/el
+Mul 64 37871097	                  31.66 ns/op 0.484375 ns/el
+MulTo 64 34754872	              34.45 ns/op 0.53125 ns/el
+Add Gonum 64 14362081	          83.79 ns/op 1.296875 ns/el
+AddTo Gonum 64 13961412	          85.95 ns/op 1.328125 ns/el
+Mul Gonum 64 21383816	          56.09 ns/op 0.875 ns/el
+MulTo Gonum 64 20815852	          57.56 ns/op 0.890625 ns/el
+
+Add 600  4869952	              246.4 ns/op 0.41 ns/el
+AddTo 600  4807711	              250.4 ns/op 0.4166666666666667 ns/el
+Mul 600  4869013	              246.4 ns/op 0.41 ns/el
+MulTo 600  4814138	              249.3 ns/op 0.415 ns/el
+Add Gonum 600  1624969	          738.4 ns/op 1.23 ns/el
+AddTo Gonum 600  1622308	      739.6 ns/op 1.2316666666666667 ns/el
+Mul Gonum 600  2438167	          492.0 ns/op 0.8183333333333334 ns/el
+MulTo Gonum 600  2429725	      493.8 ns/op 0.8216666666666667 ns/el
+
+Add 1000  2950509	              406.6 ns/op 0.406 ns/el
+AddTo 1000  2925490	              410.3 ns/op 0.41 ns/el
+Mul 1000  2950299	              406.6 ns/op 0.406 ns/el
+MulTo 1000  2924778	              410.3 ns/op 0.41 ns/el
+Add Gonum 1000   976407	           1228 ns/op 1.228 ns/el
+AddTo Gonum 1000   981037	       1220 ns/op 1.22 ns/el
+Mul Gonum 1000  1476277	          812.8 ns/op 0.812 ns/el
+MulTo Gonum 1000  1473958	      814.2 ns/op 0.814 ns/el
+
+Add 10000   260102	               4608 ns/op 0.4607 ns/el
+AddTo 10000   289588	           4136 ns/op 0.4136 ns/el
+Mul 10000   260119	               4611 ns/op 0.4611 ns/el
+MulTo 10000   289496	           4137 ns/op 0.4136 ns/el
+Add Gonum 10000    99554	      12046 ns/op 1.2046 ns/el
+AddTo Gonum 10000    99547	      12061 ns/op 1.2061 ns/el
+Mul Gonum 10000   147870	       8115 ns/op 0.8115 ns/el
+MulTo Gonum 10000   148200	       8098 ns/op 0.8097 ns/el
+
+
+AWS Lambda ARM NoASM
+
+Add 8 100000000	                   11.23 ns/op 1.375 ns/el
+AddTo 8 93409711	               12.82 ns/op 1.5 ns/el
+Mul 8 100000000	                   11.22 ns/op 1.375 ns/el
+MulTo 8 93535167	               12.83 ns/op 1.5 ns/el
+Add Gonum 8 68315965	           17.50 ns/op 2.125 ns/el
+AddTo Gonum 8 58959984	           20.32 ns/op 2.5 ns/el
+Mul Gonum 8 100000000	           11.22 ns/op 1.375 ns/el
+MulTo Gonum 8 93440091	           12.82 ns/op 1.5 ns/el
+
+Add 64 21376256	                   56.18 ns/op 0.875 ns/el
+AddTo 64 20786575	               57.67 ns/op 0.890625 ns/el
+Mul 64 21331984	                   56.09 ns/op 0.875 ns/el
+MulTo 64 20804236	               57.63 ns/op 0.890625 ns/el
+Add Gonum 64 14346108	           83.59 ns/op 1.296875 ns/el
+AddTo Gonum 64 13933760	           85.94 ns/op 1.328125 ns/el
+Mul Gonum 64 21361878	           56.10 ns/op 0.875 ns/el
+MulTo Gonum 64 20818827	           57.56 ns/op 0.890625 ns/el
+
+Add 600  2438160	               492.0 ns/op 0.82 ns/el
+AddTo 600  2429890	               493.9 ns/op 0.8216666666666667 ns/el
+Mul 600  2433016	               493.6 ns/op 0.8216666666666667 ns/el
+MulTo 600  2429419	               493.6 ns/op 0.8216666666666667 ns/el
+Add Gonum 600  1622175	           738.6 ns/op 1.23 ns/el
+AddTo Gonum 600  1622090	       739.6 ns/op 1.2316666666666667 ns/el
+Mul Gonum 600  2438176	           492.0 ns/op 0.82 ns/el
+MulTo Gonum 600  2428812	       493.7 ns/op 0.8216666666666667 ns/el
+
+Add 1000  1477068	               812.8 ns/op 0.812 ns/el
+AddTo 1000  1473108	               828.1 ns/op 0.828 ns/el
+Mul 1000  1474896	               813.4 ns/op 0.813 ns/el
+MulTo 1000  1473210	               814.7 ns/op 0.814 ns/el
+Add Gonum 1000   976112	            1228 ns/op 1.227 ns/el
+AddTo Gonum 1000   981877	        1222 ns/op 1.221 ns/el
+Mul Gonum 1000  1476547	           812.9 ns/op 0.812 ns/el
+MulTo Gonum 1000  1472922	       814.6 ns/op 0.814 ns/el
+
+Add 10000   147925	                8107 ns/op 0.8106 ns/el
+AddTo 10000   148178	            8089 ns/op 0.8088 ns/el
+Mul 10000   147613	                8116 ns/op 0.8116 ns/el
+MulTo 10000   148286	            8101 ns/op 0.8101 ns/el
+Add Gonum 10000    99421	       12050 ns/op 1.2049 ns/el
+AddTo Gonum 10000    99519	       12059 ns/op 1.2058 ns/el
+Mul Gonum 10000   147778	        8113 ns/op 0.8112 ns/el
+MulTo Gonum 10000   148150	        8112 ns/op 0.8112 ns/el
+
+AWS Lambda X86 NoASM
+
+Add 8 139337350                    8.196 ns/op 1 ns/el
+AddTo 8 141465914                  8.455 ns/op 1 ns/el
+Mul 8 21851032                     54.74 ns/op 6.75 ns/el
+MulTo 8 166339282                  7.182 ns/op 0.875 ns/el
+Add Gonum 8 100000000              11.58 ns/op 1.375 ns/el
+AddTo Gonum 8 100000000            10.91 ns/op 1.25 ns/el
+Mul Gonum 8 21913795               54.45 ns/op 6.75 ns/el
+MulTo Gonum 8 167145727            7.165 ns/op 0.875 ns/el
+
+Add 64 26909859                    44.67 ns/op 0.6875 ns/el
+AddTo 64 22787455                  50.75 ns/op 0.78125 ns/el
+Mul 64 3825786                     314.6 ns/op 4.90625 ns/el
+MulTo 64 35473448                  33.80 ns/op 0.515625 ns/el
+Add Gonum 64 24849517              48.48 ns/op 0.75 ns/el
+AddTo Gonum 64 24631387            48.42 ns/op 0.75 ns/el
+Mul Gonum 64 3841026               315.1 ns/op 4.921875 ns/el
+MulTo Gonum 64 35293142            34.16 ns/op 0.53125 ns/el
+
+Add 600 3007174                    412.2 ns/op 0.6866666666666666 ns/el
+AddTo 600 2840598                  404.2 ns/op 0.6733333333333333 ns/el
+Mul 600 2060334                    583.9 ns/op 0.9716666666666667 ns/el
+MulTo 600 3970806                  301.2 ns/op 0.5016666666666667 ns/el
+Add Gonum 600 2950712              407.1 ns/op 0.6783333333333333 ns/el
+AddTo Gonum 600 2921884            407.4 ns/op 0.6783333333333333 ns/el
+Mul Gonum 600 2058940              586.1 ns/op 0.9766666666666667 ns/el
+MulTo Gonum 600 3992178            301.0 ns/op 0.5 ns/el
+
+Add 1000 1815990                   661.3 ns/op 0.661 ns/el
+AddTo 1000 1804336                 689.4 ns/op 0.689 ns/el
+Mul 1000 1542858                   778.6 ns/op 0.778 ns/el
+MulTo 1000 2411624                 500.4 ns/op 0.5 ns/el
+Add Gonum 1000 1792431             666.9 ns/op 0.666 ns/el
+AddTo Gonum 1000 1796256           670.9 ns/op 0.67 ns/el
+Mul Gonum 1000 1534495             790.9 ns/op 0.79 ns/el
+MulTo Gonum 1000 2415516           498.8 ns/op 0.498 ns/el
+
+Add 10000 182761                    6533 ns/op 0.6532 ns/el
+AddTo 10000 174273                  6844 ns/op 0.6844 ns/el
+Mul 10000 194707                    6289 ns/op 0.6289 ns/el
+MulTo 10000 189634                  6697 ns/op 0.6696 ns/el
+Add Gonum 10000 181017              6638 ns/op 0.6637 ns/el
+AddTo Gonum 10000 179544            6712 ns/op 0.6711 ns/el
