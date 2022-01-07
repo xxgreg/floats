@@ -5,10 +5,10 @@ package f64
 const BadLen = "floats: mismatched slice lengths"
 
 func Add(dst, a []float64) {
-	if len(dst) != len(a) {
+	n := len(dst)
+	if len(a) != n {
 		panic(BadLen)
 	}
-	n := len(dst)
 	tail := n % 8
 	if n >= 8 {
 		add8(&dst[0], &dst[0], &a[0], n-tail)
@@ -19,10 +19,10 @@ func Add(dst, a []float64) {
 }
 
 func AddTo(dst, a, b []float64) []float64 {
-	if len(dst) != len(a) || len(dst) != len(b) {
+	n := len(dst)
+	if len(a) != n || len(b) != n {
 		panic(BadLen)
 	}
-	n := len(dst)
 	tail := n % 8
 	if n >= 8 {
 		add8(&dst[0], &a[0], &b[0], n-tail)
@@ -33,11 +33,26 @@ func AddTo(dst, a, b []float64) []float64 {
 	return dst
 }
 
-func Mul(dst, a []float64) {
-	if len(dst) != len(a) {
+func AddManyTo(dst, a, b, c, d []float64) []float64 {
+	n := len(dst)
+	if len(a) != n || len(b) != n || len(c) != n || len(d) != n {
 		panic(BadLen)
 	}
+	tail := n % 8
+	if n >= 8 {
+		add8_4(&dst[0], &a[0], &b[0], &c[0], &d[0], n-tail)
+	}
+	for i := n - tail; i < n; i++ {
+		dst[i] = a[i] + b[i] + c[i] + d[i]
+	}
+	return dst
+}
+
+func Mul(dst, a []float64) {
 	n := len(dst)
+	if len(a) != n {
+		panic(BadLen)
+	}
 	tail := n % 8
 	if n >= 8 {
 		mul8(&dst[0], &dst[0], &a[0], n-tail)
@@ -48,10 +63,10 @@ func Mul(dst, a []float64) {
 }
 
 func MulTo(dst, a, b []float64) []float64 {
-	if len(dst) != len(a) || len(dst) != len(b) {
+	n := len(dst)
+	if len(a) != n || len(b) != n {
 		panic(BadLen)
 	}
-	n := len(dst)
 	tail := n % 8
 	if n >= 8 {
 		mul8(&dst[0], &a[0], &b[0], n-tail)
@@ -65,3 +80,5 @@ func MulTo(dst, a, b []float64) []float64 {
 func add8(dst, a, b *float64, n int)
 
 func mul8(dst, a, b *float64, n int)
+
+func add8_4(dst, a, b, c, d *float64, n int)
