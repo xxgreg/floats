@@ -10,7 +10,7 @@ func TestAdd(t *testing.T) {
 	f := func(n, m int) {
 		dst := make([]float64, n)
 		a := slice(1, n)
-		Add(dst[:m], a[:m])
+		AddTo(dst[:m], dst[:m], a[:m])
 		fmt.Println(dst, a)
 	}
 
@@ -31,7 +31,7 @@ func TestMul(t *testing.T) {
 	n := 24
 	dst := slice(1, n)
 	a := slice(2, n)
-	Mul(dst[:16], a[:16])
+	MulTo(dst[:16], dst[:16], a[:16])
 	fmt.Println(dst)
 
 	n = 24
@@ -100,10 +100,10 @@ func AddManyToNoAsm(dst, a, b, c, d []float64) {
 }
 
 func AddManyToSimple(dst, a, b, c, d []float64) {
-	Add(dst, a)
-	Add(dst, b)
-	Add(dst, c)
-	Add(dst, d)
+	AddTo(dst, dst, a)
+	AddTo(dst, dst, b)
+	AddTo(dst, dst, c)
+	AddTo(dst, dst, d)
 }
 
 func BenchmarkAddManyNoAsm(b *testing.B) {

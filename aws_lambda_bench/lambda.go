@@ -39,39 +39,9 @@ func Handler(ctx context.Context, req Request) (Response, error) {
 		fmt.Println(string(bs))
 	}
 
-	Test()
-
 	BenchmarkAll()
 
 	return Response{}, nil
-}
-
-func Test() {
-
-	n := 10
-	dst := make([]float64, n)
-	a := slice(1, n)
-
-	f64.Add(dst[:10], a[:10])
-
-	//dst[10] = 2
-
-	fmt.Println(dst)
-
-	//n = 24
-	//dst = make([]float64, n)
-	//a = slice(1, n)
-	//b := slice(2, n)
-	//AddTo(dst[:10], a[:10], b[:10])
-	//fmt.Println(dst)
-}
-
-func slice(x float64, n int) []float64 {
-	s := make([]float64, n)
-	for i := 0; i < n; i++ {
-		s[i] = x * float64(i)
-	}
-	return s
 }
 
 func BenchmarkAll() {
@@ -82,15 +52,11 @@ func BenchmarkAll() {
 		name string
 		fn   func(b *testing.B)
 	}{
-		{"Add", func(b *testing.B) { benchOp(b, f64.Add, size) }},
 		{"AddTo", func(b *testing.B) { benchToOp(b, f64.AddTo, size) }},
-		{"AddManyTo", func(b *testing.B) { BenchmarkAddManyTo(b, size) }},
-		{"Mul", func(b *testing.B) { benchOp(b, f64.Mul, size) }},
 		{"MulTo", func(b *testing.B) { benchToOp(b, f64.MulTo, size) }},
-		{"Add Gonum", func(b *testing.B) { benchOp(b, floats.Add, size) }},
 		{"AddTo Gonum", func(b *testing.B) { benchToOp(b, floats.AddTo, size) }},
-		{"Mul Gonum", func(b *testing.B) { benchOp(b, floats.Mul, size) }},
 		{"MulTo Gonum", func(b *testing.B) { benchToOp(b, floats.MulTo, size) }},
+		{"AddManyTo", func(b *testing.B) { BenchmarkAddManyTo(b, size) }},
 	}
 
 	fmt.Println("function,asm,elements,ns/op")
