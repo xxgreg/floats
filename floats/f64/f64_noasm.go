@@ -14,6 +14,11 @@ func AddTo(dst, a, b []float64) []float64 {
 	return dst
 }
 
+func AddConst(c float64, dst []float64) {
+	for i := range dst {
+		dst[i] += c
+	}
+}
 func AddManyTo(dst, a, b, c, d []float64) []float64 {
 	n := len(dst)
 	if len(a) != n || len(b) != n || len(c) != n || len(d) != n {

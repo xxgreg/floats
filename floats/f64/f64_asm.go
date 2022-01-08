@@ -49,8 +49,21 @@ func MulTo(dst, a, b []float64) []float64 {
 	return dst
 }
 
+func AddConst(c float64, dst []float64) {
+	n := len(dst)
+	tail := n % 8
+	if n >= 8 {
+		addConst8(c, &dst[0], n-tail)
+	}
+	for i := n - tail; i < n; i++ {
+		dst[i] = dst[i] + c
+	}
+}
+
 func add8(dst, a, b *float64, n int)
 
 func mul8(dst, a, b *float64, n int)
 
 func add8_4(dst, a, b, c, d *float64, n int)
+
+func addConst8(c float64, dst *float64, n int)
