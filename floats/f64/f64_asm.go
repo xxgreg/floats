@@ -62,7 +62,7 @@ func AddConst(c float64, dst []float64) {
 
 func ScaleTo(dst []float64, c float64, a []float64) []float64 {
 	n := len(dst)
-	if len(a) != n || len(a) != n {
+	if len(a) != n {
 		panic(BadLen)
 	}
 	tail := n % 8
@@ -75,6 +75,24 @@ func ScaleTo(dst []float64, c float64, a []float64) []float64 {
 	return dst
 }
 
+func AddScaled(dst []float64, a float64, x []float64) {
+	n := len(dst)
+	if len(x) != n {
+		panic(BadLen)
+	}
+	tail := n % 8
+	if n >= 8 {
+		fma8(&dst[0], &x[0], a, n-tail)
+	}
+	for i := n - tail; i < n; i++ {
+		dst[i] = a*x[i] + dst[i]
+	}
+}
+
+func AddScaledTo(dst, y []float64, alpha float64, s []float64) []float64 {
+	panic("TODO can't implement with FMA3")
+}
+
 func add8(dst, a, b *float64, n int)
 
 func mul8(dst, a, b *float64, n int)
@@ -84,3 +102,5 @@ func add8_4(dst, a, b, c, d *float64, n int)
 func addConst8(dst, a *float64, c float64, n int)
 
 func scale8(dst, a *float64, c float64, n int)
+
+func fma8(dst, x *float64, a float64, n int)

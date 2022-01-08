@@ -50,3 +50,14 @@ func ScaleTo(dst []float64, c float64, s []float64) []float64 {
 	return dst
 }
 
+func AddScaledTo(dst, y []float64, a float64, x []float64) []float64 {
+	n := len(dst)
+	if len(dst) != n || len(y) != n || len(x) != n {
+		panic(BadLen)
+	}
+	for i := range x {
+		dst[i] = a*x[i] + y[i]
+	}
+	return dst
+}
+

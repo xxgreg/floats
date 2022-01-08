@@ -5,6 +5,18 @@ import (
 	"testing"
 )
 
+func BenchmarkAddScaled(b *testing.B) {
+
+	n := 600
+	dst := slice(1, n)
+	x := slice(2, n)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		AddScaled(dst, 3, x)
+	}
+}
+
 func TestAddConst(t *testing.T) {
 	n := 16
 	dst := make([]float64, n)

@@ -67,3 +67,40 @@ Loop:
 Done:
     VZEROUPPER
     RET
+
+
+// func fma8(dst, x *float64, a float64, n int)
+// dst[i] = a*x[i] + dst[i]
+TEXT ·fma8(SB), NOSPLIT|NOFRAME, $0-32
+
+    MOVQ    dst(FP), AX
+    MOVQ    x+8(FP), BX
+    MOVSD   a+16(FP), X0
+    MOVQ    n+24(FP), CX
+
+    MOVQ    $0, R8              // i = 0
+
+    MOVQ    CX, R9              // n-8
+    SUBQ    $8, R9
+
+    VBROADCASTSD X0, Y4
+
+Loop:
+
+    VMOVUPD  (AX)(R8*8), Y0
+    VMOVUPD  32(AX)(R8*8), Y1
+
+    VFMADD231PD   (BX)(R8*8), Y4, Y0
+    VFMADD231PD   32(BX)(R8*8), Y4, Y1
+
+    VMOVUPD  Y0, (AX)(R8*8)
+    VMOVUPD  Y1, 32(AX)(R8*8)
+
+    ADDQ    $8, R8               // i += 8
+    CMPQ    R8, R9               // if i > n-8 goto Done
+    JGT     Done
+    JMP     Loop
+
+Done:
+    VZEROUPPER
+    RET
