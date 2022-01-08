@@ -17,6 +17,22 @@ func BenchmarkAddScaled(b *testing.B) {
 	}
 }
 
+func BenchmarkAddScaledTo(b *testing.B) {
+
+	n := 600
+	dst := make([]float64, n)
+	x := slice(1, n)
+	y := slice(2, n)
+
+	//AddScaledTo(dst, x, 3, y)
+	//fmt.Println(dst)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		AddScaledTo(dst, x, 3, y)
+	}
+}
+
 func TestAddConst(t *testing.T) {
 	n := 16
 	dst := make([]float64, n)

@@ -104,3 +104,42 @@ Loop:
 Done:
     VZEROUPPER
     RET
+
+// func addScaled8(dst, x, y *float64, a float64, n int)
+// dst[i] = a*x[i] + y[i]
+TEXT ·addScaled8(SB), NOSPLIT|NOFRAME, $0-40
+
+    MOVQ    dst(FP), AX
+    MOVQ    x+8(FP), BX
+    MOVQ    y+16(FP), CX
+    MOVSD   a+24(FP), X0
+    MOVQ    n+32(FP), DX
+
+    MOVQ    $0, R8              // i = 0
+
+    MOVQ    DX, R9              // n-8
+    SUBQ    $8, R9
+
+    VBROADCASTSD X0, Y4
+
+Loop:
+
+    // Note: Can't use FMA as y may differ from dst.
+
+    VMULPD   (BX)(R8*8), Y4, Y0
+    VMULPD   32(BX)(R8*8), Y4, Y1
+
+    VADDPD   (CX)(R8*8), Y0, Y0
+    VADDPD   32(CX)(R8*8), Y1, Y1
+
+    VMOVUPD  Y0, (AX)(R8*8)
+    VMOVUPD  Y1, 32(AX)(R8*8)
+
+    ADDQ    $8, R8               // i += 8
+    CMPQ    R8, R9               // if i > n-8 goto Done
+    JGT     Done
+    JMP     Loop
+
+Done:
+    VZEROUPPER
+    RET

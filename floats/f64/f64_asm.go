@@ -82,6 +82,7 @@ func AddScaled(dst []float64, a float64, x []float64) {
 	}
 	tail := n % 8
 	if n >= 8 {
+		//FIXME FMA isn't much faster than add scaled, so I'll just delete this.
 		fma8(&dst[0], &x[0], a, n-tail)
 	}
 	for i := n - tail; i < n; i++ {
@@ -89,8 +90,20 @@ func AddScaled(dst []float64, a float64, x []float64) {
 	}
 }
 
-func AddScaledTo(dst, y []float64, alpha float64, s []float64) []float64 {
-	panic("TODO can't implement with FMA3")
+func AddScaledTo(dst, x []float64, a float64, y []float64) []float64 {
+	n := len(dst)
+	if len(x) != n || len(y) != n {
+		panic(BadLen)
+	}
+	tail := n % 8
+	if n >= 8 {
+		//FIXME I've swapped the order of x and y somewhere.
+		addScaled8(&dst[0], &y[0], &x[0], a, n-tail)
+	}
+	for i := n - tail; i < n; i++ {
+		dst[i] = a*x[i] + y[i]
+	}
+	return dst
 }
 
 func add8(dst, a, b *float64, n int)
@@ -104,3 +117,5 @@ func addConst8(dst, a *float64, c float64, n int)
 func scale8(dst, a *float64, c float64, n int)
 
 func fma8(dst, x *float64, a float64, n int)
+
+func addScaled8(dst, x, y *float64, a float64, n int)
