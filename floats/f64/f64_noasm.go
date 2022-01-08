@@ -39,3 +39,14 @@ func MulTo(dst, a, b []float64) []float64 {
 	}
 	return dst
 }
+
+func ScaleTo(dst []float64, c float64, s []float64) []float64 {
+	if len(dst) != len(s) || len(dst) != len(s) {
+		panic(BadLen)
+	}
+	for i := range dst {
+		dst[i] = s[i] * c
+	}
+	return dst
+}
+

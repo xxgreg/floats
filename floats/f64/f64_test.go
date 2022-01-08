@@ -5,6 +5,46 @@ import (
 	"testing"
 )
 
+func TestAddConst(t *testing.T) {
+	n := 16
+	dst := make([]float64, n)
+	AddConst(2, dst)
+	fmt.Println(dst)
+}
+
+func TestScaleTo(t *testing.T) {
+	n := 16
+	dst := slice(3, n)
+	ScaleTo(dst, 2, dst)
+	fmt.Println(dst)
+}
+
+func AddConstNoAsm(c float64, dst []float64) {
+	for i := range dst {
+		dst[i] += c
+	}
+}
+
+func BenchmarkAddConst(b *testing.B) {
+
+	n := 600
+	dst := slice(1, n)
+
+	for i := 0; i < b.N; i++ {
+		AddConst(2, dst)
+	}
+}
+
+func BenchmarkScaleTo(b *testing.B) {
+
+	n := 600
+	dst := slice(1, n)
+
+	for i := 0; i < b.N; i++ {
+		ScaleTo(dst, 2, dst)
+	}
+}
+
 func TestAdd(t *testing.T) {
 
 	f := func(n, m int) {

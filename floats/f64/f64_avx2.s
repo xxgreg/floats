@@ -3,15 +3,17 @@
 
 #include "textflag.h"
 
-TEXT ·addConst8(SB), NOSPLIT|NOFRAME, $0-24
+// func addConst8(dst, a *float64, c float64, n int)
+TEXT ·addConst8(SB), NOSPLIT|NOFRAME, $0-32
 
-    MOVSD   c(FP), X0
-    MOVQ    dst+8(FP), AX
-    MOVQ    n+16(FP), BX
+    MOVQ    dst(FP), AX
+    MOVQ    a+8(FP), BX
+    MOVSD   c+16(FP), X0
+    MOVQ    n+24(FP), CX
 
     MOVQ    $0, R8              // i = 0
 
-    MOVQ    BX, R9              // n-8
+    MOVQ    CX, R9              // n-8
     SUBQ    $8, R9
 
     VBROADCASTSD X0, Y2
@@ -20,6 +22,39 @@ Loop:
 
     VADDPD   (AX)(R8*8), Y2, Y0
     VADDPD   32(AX)(R8*8), Y2, Y1
+
+    VMOVUPD  Y0, (AX)(R8*8)
+    VMOVUPD  Y1, 32(AX)(R8*8)
+
+    ADDQ    $8, R8               // i += 8
+    CMPQ    R8, R9               // if i > n-8 goto Done
+    JGT     Done
+    JMP     Loop
+
+Done:
+    VZEROUPPER
+    RET
+
+
+// func scale8(dst, a *float64, c float64, n int)
+TEXT ·scale8(SB), NOSPLIT|NOFRAME, $0-32
+
+    MOVQ    dst(FP), AX
+    MOVQ    a+8(FP), BX
+    MOVSD   c+16(FP), X0
+    MOVQ    n+24(FP), CX
+
+    MOVQ    $0, R8              // i = 0
+
+    MOVQ    CX, R9              // n-8
+    SUBQ    $8, R9
+
+    VBROADCASTSD X0, Y2
+
+Loop:
+
+    VMULPD   (AX)(R8*8), Y2, Y0
+    VMULPD   32(AX)(R8*8), Y2, Y1
 
     VMOVUPD  Y0, (AX)(R8*8)
     VMOVUPD  Y1, 32(AX)(R8*8)

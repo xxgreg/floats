@@ -53,11 +53,26 @@ func AddConst(c float64, dst []float64) {
 	n := len(dst)
 	tail := n % 8
 	if n >= 8 {
-		addConst8(c, &dst[0], n-tail)
+		addConst8(&dst[0], &dst[0], c, n-tail)
 	}
 	for i := n - tail; i < n; i++ {
 		dst[i] = dst[i] + c
 	}
+}
+
+func ScaleTo(dst []float64, c float64, a []float64) []float64 {
+	n := len(dst)
+	if len(a) != n || len(a) != n {
+		panic(BadLen)
+	}
+	tail := n % 8
+	if n >= 8 {
+		scale8(&dst[0], &a[0], c, n-tail)
+	}
+	for i := n - tail; i < n; i++ {
+		dst[i] = a[i] * c
+	}
+	return dst
 }
 
 func add8(dst, a, b *float64, n int)
@@ -66,4 +81,6 @@ func mul8(dst, a, b *float64, n int)
 
 func add8_4(dst, a, b, c, d *float64, n int)
 
-func addConst8(c float64, dst *float64, n int)
+func addConst8(dst, a *float64, c float64, n int)
+
+func scale8(dst, a *float64, c float64, n int)
