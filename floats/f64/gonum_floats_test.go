@@ -33,6 +33,7 @@
 package f64
 
 import (
+	"fmt"
 	"testing"
 
 	"golang.org/x/exp/rand"
@@ -82,10 +83,10 @@ func Panics(fun func()) (b bool) {
 
 func TestAdd2(t *testing.T) {
 	t.Parallel()
-	a := []float64{1, 2, 3}
-	b := []float64{4, 5, 6}
-	c := []float64{7, 8, 9}
-	truth := []float64{12, 15, 18}
+	a := []float64{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	b := []float64{4, 5, 6, 7, 8, 9, 10, 11, 12}
+	c := []float64{7, 8, 9, 11, 13, 15, 17, 19, 21}
+	truth := []float64{12, 15, 18, 22, 26, 30, 34, 38, 42}
 	n := make([]float64, len(a))
 
 	Add(n, a)
@@ -104,9 +105,9 @@ func TestAdd2(t *testing.T) {
 
 func TestAddTo(t *testing.T) {
 	t.Parallel()
-	a := []float64{1, 2, 3}
-	b := []float64{4, 5, 6}
-	truth := []float64{5, 7, 9}
+	a := []float64{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	b := []float64{4, 5, 6, 7, 8, 9, 10, 11, 12}
+	truth := []float64{5, 7, 9, 11, 13, 15, 17, 19, 21}
 	n1 := make([]float64, len(a))
 
 	n2 := AddTo(n1, a, b)
@@ -124,19 +125,19 @@ func TestAddTo(t *testing.T) {
 
 func TestAddConst2(t *testing.T) {
 	t.Parallel()
-	s := []float64{3, 4, 1, 7, 5}
+	s := []float64{3, 4, 1, 7, 5, 3, 4, 1, 7}
 	c := 6.0
-	truth := []float64{9, 10, 7, 13, 11}
+	truth := []float64{9, 10, 7, 13, 11, 9, 10, 7, 13}
 	AddConst(c, s)
 	areSlicesEqual(t, truth, s, "Wrong addition of constant")
 }
 
 func TestAddScaled(t *testing.T) {
 	t.Parallel()
-	s := []float64{3, 4, 1, 7, 5}
+	s := []float64{3, 4, 1, 7, 5, 3, 4, 1, 7}
 	alpha := 6.0
-	dst := []float64{1, 2, 3, 4, 5}
-	ans := []float64{19, 26, 9, 46, 35}
+	dst := []float64{1, 2, 3, 4, 5, 1, 2, 3, 4}
+	ans := []float64{19, 26, 9, 46, 35, 19, 26, 9, 46}
 	AddScaled(dst, alpha, s)
 	if !floats.EqualApprox(dst, ans, EqTolerance) {
 		t.Errorf("Adding scaled did not match")
@@ -152,11 +153,11 @@ func TestAddScaled(t *testing.T) {
 
 func TestAddScaledTo(t *testing.T) {
 	t.Parallel()
-	s := []float64{3, 4, 1, 7, 5}
+	s := []float64{3, 4, 1, 7, 5, 3, 4, 1, 7}
 	alpha := 6.0
-	y := []float64{1, 2, 3, 4, 5}
-	dst1 := make([]float64, 5)
-	ans := []float64{19, 26, 9, 46, 35}
+	y := []float64{1, 2, 3, 4, 5, 1, 2, 3, 4}
+	dst1 := make([]float64, 9)
+	ans := []float64{19, 26, 9, 46, 35, 19, 26, 9, 46}
 	dst2 := AddScaledTo(dst1, y, alpha, s)
 	if !floats.EqualApprox(dst1, ans, EqTolerance) {
 		t.Errorf("AddScaledTo did not match for mutator")
@@ -242,11 +243,12 @@ func TestAddScaledTo(t *testing.T) {
 
 func TestMul2(t *testing.T) {
 	t.Parallel()
-	s1 := []float64{1, 2, 3}
-	s2 := []float64{1, 2, 3}
-	ans := []float64{1, 4, 9}
+	s1 := []float64{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	s2 := []float64{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	ans := []float64{1, 4, 9, 16, 25, 36, 49, 64, 81}
 	Mul(s1, s2)
 	if !floats.EqualApprox(s1, ans, EqTolerance) {
+		fmt.Println(s1)
 		t.Errorf("Mul doesn't give correct answer")
 	}
 	s1short := []float64{1}
@@ -261,12 +263,12 @@ func TestMul2(t *testing.T) {
 
 func TestMulTo(t *testing.T) {
 	t.Parallel()
-	s1 := []float64{1, 2, 3}
-	s1orig := []float64{1, 2, 3}
-	s2 := []float64{1, 2, 3}
-	s2orig := []float64{1, 2, 3}
-	dst1 := make([]float64, 3)
-	ans := []float64{1, 4, 9}
+	s1 := []float64{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	s1orig := []float64{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	s2 := []float64{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	s2orig := []float64{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	dst1 := make([]float64, 9)
+	ans := []float64{1, 4, 9, 16, 25, 36, 49, 64, 81}
 	dst2 := MulTo(dst1, s1, s2)
 	if !floats.EqualApprox(dst1, ans, EqTolerance) {
 		t.Errorf("MulTo doesn't give correct answer in mutated slice")
@@ -300,20 +302,20 @@ func TestMulTo(t *testing.T) {
 
 func TestScale(t *testing.T) {
 	t.Parallel()
-	s := []float64{3, 4, 1, 7, 5}
+	s := []float64{3, 4, 1, 7, 5, 3, 4, 1, 7}
 	c := 5.0
-	truth := []float64{15, 20, 5, 35, 25}
+	truth := []float64{15, 20, 5, 35, 25, 15, 20, 5, 35}
 	Scale(c, s)
 	areSlicesEqual(t, truth, s, "Bad scaling")
 }
 
 func TestScaleTo2(t *testing.T) {
 	t.Parallel()
-	s := []float64{3, 4, 1, 7, 5}
+	s := []float64{3, 4, 1, 7, 5, 3, 4, 1, 7}
 	sCopy := make([]float64, len(s))
 	copy(sCopy, s)
 	c := 5.0
-	truth := []float64{15, 20, 5, 35, 25}
+	truth := []float64{15, 20, 5, 35, 25, 15, 20, 5, 35}
 	dst := make([]float64, len(s))
 	ScaleTo(dst, c, s)
 	if !floats.Same(dst, truth) {
