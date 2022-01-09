@@ -28,6 +28,32 @@ var f64asm = []AsmFn{
 `,
 	},
 	{
+		Name: "sub8",
+		Doc: `
+// Element-wise subtraction of a and b, storing the result in dst.
+// n must be a multiple of 8.`,
+		FnKind: Float64x2,
+		Arch:   X86,
+		Body: `
+    VSUBPD   (CX)(R8*8), Y0, Y0
+    VSUBPD   32(CX)(R8*8), Y1, Y1
+`,
+	},
+	{
+		Name: "sub8",
+		Doc: `
+	// Element-wise subtraction of a and b, storing the result in dst.
+	// n must be a multiple of 8.`,
+		FnKind: Float64x2,
+		Arch:   Arm64,
+		Body: `
+	       WORD   $0x4EE4D400            // fsub v0.2d, v0.2d, v4.2d
+	       WORD   $0x4EE5D421            // fsub v1.2d, v1.2d, v5.2d
+	       WORD   $0x4EE6D442            // fsub v2.2d, v2.2d, v6.2d
+	       WORD   $0x4EE7D463            // fsub v3.2d, v3.2d, v7.2d
+	`,
+	},
+	{
 		Name: "mul8",
 		Doc: `
 // Element-wise multiplication of a and b, storing the result in dst.

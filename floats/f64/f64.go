@@ -17,5 +17,5 @@ func Div(dst, x []float64) {
 }
 
 func Sub(dst, x []float64) {
-	SubTo(dst, x, dst)
+	SubTo(dst, dst, x)
 }

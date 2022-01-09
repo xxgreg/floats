@@ -112,11 +112,24 @@ func DivTo(dst, x, y []float64) []float64 {
 }
 
 func SubTo(dst, x, y []float64) []float64 {
-	panic("TODO")
+	n := len(dst)
+	if len(x) != n || len(y) != n {
+		panic(BadLen)
+	}
+	tail := n % 8
+	if n >= 8 {
+		sub8(&dst[0], &x[0], &y[0], n-tail)
+	}
+	for i := n - tail; i < n; i++ {
+		dst[i] = x[i] - y[i]
+	}
+	return dst
 }
 
 //TODO rename to x,y
 func add8(dst, a, b *float64, n int)
+
+func sub8(dst, a, b *float64, n int)
 
 func mul8(dst, a, b *float64, n int)
 
