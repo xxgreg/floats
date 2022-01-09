@@ -8,8 +8,7 @@ The API is intended to be compatible with the [Gonum floats package](https://pkg
 It provides AVX2, and Neon assembly implementations for x86, and arm64. It has
 been benchmarked on AWS Lambda.
 
-Currently, only float64 is supported, and only `Add` and `Multiply` have 
-been implemented.
+Currently, only float64 is supported.
 
 When running benchmarks on AWS Lambda, performance over plain Go loops is 
 improved 2x-4x for x86, and 2x for arm64. The micro-benchmarks haven't been
