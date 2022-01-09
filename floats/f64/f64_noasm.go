@@ -61,3 +61,22 @@ func AddScaledTo(dst, y []float64, a float64, x []float64) []float64 {
 	return dst
 }
 
+func SubTo(dst, a, b []float64) []float64 {
+	if len(dst) != len(a) || len(dst) != len(b) {
+		panic(BadLen)
+	}
+	for i := range dst {
+		dst[i] = a[i] - b[i]
+	}
+	return dst
+}
+
+func DivTo(dst, a, b []float64) []float64 {
+	if len(dst) != len(a) || len(dst) != len(b) {
+		panic(BadLen)
+	}
+	for i := range dst {
+		dst[i] = a[i] / b[i]
+	}
+	return dst
+}

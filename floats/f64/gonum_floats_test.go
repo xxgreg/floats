@@ -181,65 +181,63 @@ func TestAddScaledTo(t *testing.T) {
 	}
 }
 
-//TODO
-//func TestDiv(t *testing.T) {
-//	t.Parallel()
-//	s1 := []float64{5, 12, 27}
-//	s2 := []float64{1, 2, 3}
-//	ans := []float64{5, 6, 9}
-//	Div(s1, s2)
-//	if !EqualApprox(s1, ans, EqTolerance) {
-//		t.Errorf("Div doesn't give correct answer")
-//	}
-//	s1short := []float64{1}
-//	if !Panics(func() { Div(s1short, s2) }) {
-//		t.Errorf("Did not panic with unequal lengths")
-//	}
-//	s2short := []float64{1}
-//	if !Panics(func() { Div(s1, s2short) }) {
-//		t.Errorf("Did not panic with unequal lengths")
-//	}
-//}
+func TestDiv(t *testing.T) {
+	t.Parallel()
+	s1 := []float64{5, 12, 27, 5, 12, 27, 5, 12, 27}
+	s2 := []float64{1, 2, 3, 1, 2, 3, 1, 2, 3}
+	ans := []float64{5, 6, 9, 5, 6, 9, 5, 6, 9}
+	Div(s1, s2)
+	if !floats.EqualApprox(s1, ans, EqTolerance) {
+		t.Errorf("Div doesn't give correct answer")
+	}
+	s1short := []float64{1}
+	if !Panics(func() { Div(s1short, s2) }) {
+		t.Errorf("Did not panic with unequal lengths")
+	}
+	s2short := []float64{1}
+	if !Panics(func() { Div(s1, s2short) }) {
+		t.Errorf("Did not panic with unequal lengths")
+	}
+}
 
-//TODO
-//func TestDivTo(t *testing.T) {
-//	t.Parallel()
-//	s1 := []float64{5, 12, 27}
-//	s1orig := []float64{5, 12, 27}
-//	s2 := []float64{1, 2, 3}
-//	s2orig := []float64{1, 2, 3}
-//	dst1 := make([]float64, 3)
-//	ans := []float64{5, 6, 9}
-//	dst2 := DivTo(dst1, s1, s2)
-//	if !EqualApprox(dst1, ans, EqTolerance) {
-//		t.Errorf("DivTo doesn't give correct answer in mutated slice")
-//	}
-//	if !EqualApprox(dst2, ans, EqTolerance) {
-//		t.Errorf("DivTo doesn't give correct answer in returned slice")
-//	}
-//	if !EqualApprox(s1, s1orig, EqTolerance) {
-//		t.Errorf("S1 changes during multo")
-//	}
-//	if !EqualApprox(s2, s2orig, EqTolerance) {
-//		t.Errorf("s2 changes during multo")
-//	}
-//	DivTo(dst1, s1, s2)
-//	if !EqualApprox(dst1, ans, EqTolerance) {
-//		t.Errorf("DivTo doesn't give correct answer reusing dst")
-//	}
-//	dstShort := []float64{1}
-//	if !Panics(func() { DivTo(dstShort, s1, s2) }) {
-//		t.Errorf("Did not panic with s1 wrong length")
-//	}
-//	s1short := []float64{1}
-//	if !Panics(func() { DivTo(dst1, s1short, s2) }) {
-//		t.Errorf("Did not panic with s1 wrong length")
-//	}
-//	s2short := []float64{1}
-//	if !Panics(func() { DivTo(dst1, s1, s2short) }) {
-//		t.Errorf("Did not panic with s2 wrong length")
-//	}
-//}
+func TestDivTo(t *testing.T) {
+	t.Parallel()
+	s1 := []float64{5, 12, 27, 5, 12, 27, 5, 12, 27}
+	s1orig := []float64{5, 12, 27, 5, 12, 27, 5, 12, 27}
+	s2 := []float64{1, 2, 3, 1, 2, 3, 1, 2, 3}
+	s2orig := []float64{1, 2, 3, 1, 2, 3, 1, 2, 3}
+	dst1 := make([]float64, 9)
+	ans := []float64{5, 6, 9, 5, 6, 9, 5, 6, 9}
+	dst2 := DivTo(dst1, s1, s2)
+	if !floats.EqualApprox(dst1, ans, EqTolerance) {
+		t.Errorf("DivTo doesn't give correct answer in mutated slice")
+	}
+	if !floats.EqualApprox(dst2, ans, EqTolerance) {
+		t.Errorf("DivTo doesn't give correct answer in returned slice")
+	}
+	if !floats.EqualApprox(s1, s1orig, EqTolerance) {
+		t.Errorf("S1 changes during multo")
+	}
+	if !floats.EqualApprox(s2, s2orig, EqTolerance) {
+		t.Errorf("s2 changes during multo")
+	}
+	DivTo(dst1, s1, s2)
+	if !floats.EqualApprox(dst1, ans, EqTolerance) {
+		t.Errorf("DivTo doesn't give correct answer reusing dst")
+	}
+	dstShort := []float64{1}
+	if !Panics(func() { DivTo(dstShort, s1, s2) }) {
+		t.Errorf("Did not panic with s1 wrong length")
+	}
+	s1short := []float64{1}
+	if !Panics(func() { DivTo(dst1, s1short, s2) }) {
+		t.Errorf("Did not panic with s1 wrong length")
+	}
+	s2short := []float64{1}
+	if !Panics(func() { DivTo(dst1, s1, s2short) }) {
+		t.Errorf("Did not panic with s2 wrong length")
+	}
+}
 
 func TestMul2(t *testing.T) {
 	t.Parallel()
@@ -329,41 +327,39 @@ func TestScaleTo2(t *testing.T) {
 	}
 }
 
-//TODO
-//func TestSub(t *testing.T) {
-//	t.Parallel()
-//	s := []float64{3, 4, 1, 7, 5}
-//	v := []float64{1, 2, 3, 4, 5}
-//	truth := []float64{2, 2, -2, 3, 0}
-//	Sub(s, v)
-//	areSlicesEqual(t, truth, s, "Bad subtract")
-//	// Test that it panics
-//	if !Panics(func() { Sub(make([]float64, 2), make([]float64, 3)) }) {
-//		t.Errorf("Did not panic with length mismatch")
-//	}
-//}
+func TestSub(t *testing.T) {
+	t.Parallel()
+	s := []float64{3, 4, 1, 7, 5, 3, 4, 1, 7}
+	v := []float64{1, 2, 3, 4, 5, 1, 2, 3, 4}
+	truth := []float64{2, 2, -2, 3, 0, 2, 2, -2, 3}
+	Sub(s, v)
+	areSlicesEqual(t, truth, s, "Bad subtract")
+	// Test that it panics
+	if !Panics(func() { Sub(make([]float64, 2), make([]float64, 3)) }) {
+		t.Errorf("Did not panic with length mismatch")
+	}
+}
 
-//TODO
-//func TestSubTo(t *testing.T) {
-//	t.Parallel()
-//	s := []float64{3, 4, 1, 7, 5}
-//	v := []float64{1, 2, 3, 4, 5}
-//	truth := []float64{2, 2, -2, 3, 0}
-//	dst1 := make([]float64, len(s))
-//	dst2 := SubTo(dst1, s, v)
-//	areSlicesEqual(t, truth, dst1, "Bad subtract from mutator")
-//	areSlicesEqual(t, truth, dst2, "Bad subtract from returned slice")
-//	// Test that all mismatch combinations panic
-//	if !Panics(func() { SubTo(make([]float64, 2), make([]float64, 3), make([]float64, 3)) }) {
-//		t.Errorf("Did not panic with dst different length")
-//	}
-//	if !Panics(func() { SubTo(make([]float64, 3), make([]float64, 2), make([]float64, 3)) }) {
-//		t.Errorf("Did not panic with subtractor different length")
-//	}
-//	if !Panics(func() { SubTo(make([]float64, 3), make([]float64, 3), make([]float64, 2)) }) {
-//		t.Errorf("Did not panic with subtractee different length")
-//	}
-//}
+func TestSubTo(t *testing.T) {
+	t.Parallel()
+	s := []float64{3, 4, 1, 7, 5, 3, 4, 1, 7}
+	v := []float64{1, 2, 3, 4, 5, 1, 2, 3, 4}
+	truth := []float64{2, 2, -2, 3, 0, 2, 2, -2, 3}
+	dst1 := make([]float64, len(s))
+	dst2 := SubTo(dst1, s, v)
+	areSlicesEqual(t, truth, dst1, "Bad subtract from mutator")
+	areSlicesEqual(t, truth, dst2, "Bad subtract from returned slice")
+	// Test that all mismatch combinations panic
+	if !Panics(func() { SubTo(make([]float64, 2), make([]float64, 3), make([]float64, 3)) }) {
+		t.Errorf("Did not panic with dst different length")
+	}
+	if !Panics(func() { SubTo(make([]float64, 3), make([]float64, 2), make([]float64, 3)) }) {
+		t.Errorf("Did not panic with subtractor different length")
+	}
+	if !Panics(func() { SubTo(make([]float64, 3), make([]float64, 3), make([]float64, 2)) }) {
+		t.Errorf("Did not panic with subtractee different length")
+	}
+}
 
 func randomSlice(l int, src rand.Source) []float64 {
 	rnd := rand.New(src)
@@ -403,63 +399,63 @@ func BenchmarkAddToMed(b *testing.B)   { benchmarkAddTo(b, Medium) }
 func BenchmarkAddToLarge(b *testing.B) { benchmarkAddTo(b, Large) }
 func BenchmarkAddToHuge(b *testing.B)  { benchmarkAddTo(b, Huge) }
 
-//func benchmarkDiv(b *testing.B, size int) {
-//	src := rand.NewSource(1)
-//	s := randomSlice(size, src)
-//	dst := randomSlice(size, src)
-//	b.ResetTimer()
-//	for i := 0; i < b.N; i++ {
-//		Div(dst, s)
-//	}
-//}
-//func BenchmarkDivSmall(b *testing.B) { benchmarkDiv(b, Small) }
-//func BenchmarkDivMed(b *testing.B)   { benchmarkDiv(b, Medium) }
-//func BenchmarkDivLarge(b *testing.B) { benchmarkDiv(b, Large) }
-//func BenchmarkDivHuge(b *testing.B)  { benchmarkDiv(b, Huge) }
-//
-//func benchmarkDivTo(b *testing.B, size int) {
-//	src := rand.NewSource(1)
-//	s1 := randomSlice(size, src)
-//	s2 := randomSlice(size, src)
-//	dst := randomSlice(size, src)
-//	b.ResetTimer()
-//	for i := 0; i < b.N; i++ {
-//		DivTo(dst, s1, s2)
-//	}
-//}
-//func BenchmarkDivToSmall(b *testing.B) { benchmarkDivTo(b, Small) }
-//func BenchmarkDivToMed(b *testing.B)   { benchmarkDivTo(b, Medium) }
-//func BenchmarkDivToLarge(b *testing.B) { benchmarkDivTo(b, Large) }
-//func BenchmarkDivToHuge(b *testing.B)  { benchmarkDivTo(b, Huge) }
+func benchmarkDiv(b *testing.B, size int) {
+	src := rand.NewSource(1)
+	s := randomSlice(size, src)
+	dst := randomSlice(size, src)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Div(dst, s)
+	}
+}
+func BenchmarkDivSmall(b *testing.B) { benchmarkDiv(b, Small) }
+func BenchmarkDivMed(b *testing.B)   { benchmarkDiv(b, Medium) }
+func BenchmarkDivLarge(b *testing.B) { benchmarkDiv(b, Large) }
+func BenchmarkDivHuge(b *testing.B)  { benchmarkDiv(b, Huge) }
 
-//func benchmarkSub(b *testing.B, size int) {
-//	src := rand.NewSource(1)
-//	s1 := randomSlice(size, src)
-//	s2 := randomSlice(size, src)
-//	b.ResetTimer()
-//	for i := 0; i < b.N; i++ {
-//		Sub(s1, s2)
-//	}
-//}
-//func BenchmarkSubSmall(b *testing.B) { benchmarkSub(b, Small) }
-//func BenchmarkSubMed(b *testing.B)   { benchmarkSub(b, Medium) }
-//func BenchmarkSubLarge(b *testing.B) { benchmarkSub(b, Large) }
-//func BenchmarkSubHuge(b *testing.B)  { benchmarkSub(b, Huge) }
-//
-//func benchmarkSubTo(b *testing.B, size int) {
-//	src := rand.NewSource(1)
-//	s1 := randomSlice(size, src)
-//	s2 := randomSlice(size, src)
-//	dst := randomSlice(size, src)
-//	b.ResetTimer()
-//	for i := 0; i < b.N; i++ {
-//		SubTo(dst, s1, s2)
-//	}
-//}
-//func BenchmarkSubToSmall(b *testing.B) { benchmarkSubTo(b, Small) }
-//func BenchmarkSubToMed(b *testing.B)   { benchmarkSubTo(b, Medium) }
-//func BenchmarkSubToLarge(b *testing.B) { benchmarkSubTo(b, Large) }
-//func BenchmarkSubToHuge(b *testing.B)  { benchmarkSubTo(b, Huge) }
+func benchmarkDivTo(b *testing.B, size int) {
+	src := rand.NewSource(1)
+	s1 := randomSlice(size, src)
+	s2 := randomSlice(size, src)
+	dst := randomSlice(size, src)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		DivTo(dst, s1, s2)
+	}
+}
+func BenchmarkDivToSmall(b *testing.B) { benchmarkDivTo(b, Small) }
+func BenchmarkDivToMed(b *testing.B)   { benchmarkDivTo(b, Medium) }
+func BenchmarkDivToLarge(b *testing.B) { benchmarkDivTo(b, Large) }
+func BenchmarkDivToHuge(b *testing.B)  { benchmarkDivTo(b, Huge) }
+
+func benchmarkSub(b *testing.B, size int) {
+	src := rand.NewSource(1)
+	s1 := randomSlice(size, src)
+	s2 := randomSlice(size, src)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Sub(s1, s2)
+	}
+}
+func BenchmarkSubSmall(b *testing.B) { benchmarkSub(b, Small) }
+func BenchmarkSubMed(b *testing.B)   { benchmarkSub(b, Medium) }
+func BenchmarkSubLarge(b *testing.B) { benchmarkSub(b, Large) }
+func BenchmarkSubHuge(b *testing.B)  { benchmarkSub(b, Huge) }
+
+func benchmarkSubTo(b *testing.B, size int) {
+	src := rand.NewSource(1)
+	s1 := randomSlice(size, src)
+	s2 := randomSlice(size, src)
+	dst := randomSlice(size, src)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		SubTo(dst, s1, s2)
+	}
+}
+func BenchmarkSubToSmall(b *testing.B) { benchmarkSubTo(b, Small) }
+func BenchmarkSubToMed(b *testing.B)   { benchmarkSubTo(b, Medium) }
+func BenchmarkSubToLarge(b *testing.B) { benchmarkSubTo(b, Large) }
+func BenchmarkSubToHuge(b *testing.B)  { benchmarkSubTo(b, Huge) }
 
 func benchmarkAddScaledTo(b *testing.B, size int) {
 	src := rand.NewSource(1)

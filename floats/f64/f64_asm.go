@@ -106,6 +106,15 @@ func AddScaledTo(dst, x []float64, a float64, y []float64) []float64 {
 	return dst
 }
 
+func DivTo(dst, x, y []float64) []float64 {
+	panic("TODO")
+	//TODO what about div by zero = NaN?
+}
+
+func SubTo(dst, x, y []float64) []float64 {
+	panic("TODO")
+}
+
 //TODO rename to x,y
 func add8(dst, a, b *float64, n int)
 
