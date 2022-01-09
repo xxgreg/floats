@@ -97,7 +97,7 @@ func AddScaledTo(dst, x []float64, a float64, y []float64) []float64 {
 	}
 	tail := n % 8
 	if n >= 8 {
-		//FIXME I've swapped the order of x and y somewhere.
+		//FIXME I've swapped the order of x and y somewhere. in x86?
 		addScaled8(&dst[0], &y[0], &x[0], a, n-tail)
 	}
 	for i := n - tail; i < n; i++ {
