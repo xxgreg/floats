@@ -58,6 +58,23 @@ func Test() {
 		f64.ScaleTo(dst, 2, dst)
 		fmt.Println(dst)
 	}
+	fmt.Println("add scaled to")
+	{
+		n := 16
+		dst := make([]float64, n)
+		x := slice(2, n)
+		y := slice(3, n)
+		f64.AddScaledTo(dst, x, 2, y)
+		fmt.Println(dst)
+	}
+	{
+		n := 7
+		dst := make([]float64, n)
+		x := slice(2, n)
+		y := slice(3, n)
+		f64.AddScaledTo(dst, x, 2, y)
+		fmt.Println(dst)
+	}
 }
 
 func slice(x float64, n int) []float64 {
@@ -81,6 +98,8 @@ func BenchmarkAll() {
 		{"AddConst Gonum", func(b *testing.B) { benchAddConst(b, floats.AddConst, size) }},
 		{"ScaleTo", func(b *testing.B) { benchScaleTo(b, f64.ScaleTo, size) }},
 		{"ScaleTo Gonum", func(b *testing.B) { benchScaleTo(b, floats.ScaleTo, size) }},
+		{"AddScaledTo", func(b *testing.B) { benchAddScaledTo(b, f64.AddScaledTo, size) }},
+		{"AddScaledTo Gonum", func(b *testing.B) { benchAddScaledTo(b, floats.AddScaledTo, size) }},
 		//{"MulTo", func(b *testing.B) { benchToOp(b, f64.MulTo, size) }},
 		//{"AddTo Gonum", func(b *testing.B) { benchToOp(b, floats.AddTo, size) }},
 		//{"MulTo Gonum", func(b *testing.B) { benchToOp(b, floats.MulTo, size) }},
@@ -199,5 +218,25 @@ func benchScaleTo(b *testing.B, f func(dst []float64, c float64, a []float64) []
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
 		f(dst, 2, x)
+	}
+}
+
+func benchAddScaledTo(b *testing.B, f func(dst, x []float64, a float64, y []float64) []float64, size int) {
+	dst := make([]float64, size)
+
+	x := make([]float64, size)
+	for i := range x {
+		x[i] = float64(i) * 0.036
+	}
+
+	y := make([]float64, size)
+	for i := range y {
+		y[i] = float64(i) * 0.078
+	}
+
+	b.ResetTimer()
+	b.ReportAllocs()
+	for i := 0; i < b.N; i++ {
+		f(dst, x, 2, y)
 	}
 }
