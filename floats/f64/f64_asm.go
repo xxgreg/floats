@@ -44,7 +44,7 @@ func MulTo(dst, a, b []float64) []float64 {
 		mul8(&dst[0], &a[0], &b[0], n-tail)
 	}
 	for i := n - tail; i < n; i++ {
-		dst[i] = a[i] + b[i]
+		dst[i] = a[i] * b[i]
 	}
 	return dst
 }
@@ -60,17 +60,17 @@ func AddConst(c float64, dst []float64) {
 	}
 }
 
-func ScaleTo(dst []float64, c float64, a []float64) []float64 {
+func ScaleTo(dst []float64, a float64, x []float64) []float64 {
 	n := len(dst)
-	if len(a) != n {
+	if len(x) != n {
 		panic(BadLen)
 	}
 	tail := n % 8
 	if n >= 8 {
-		scale8(&dst[0], &a[0], c, n-tail)
+		scale8(&dst[0], &x[0], a, n-tail)
 	}
 	for i := n - tail; i < n; i++ {
-		dst[i] = a[i] * c
+		dst[i] = x[i] * a
 	}
 	return dst
 }
