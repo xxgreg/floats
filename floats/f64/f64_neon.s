@@ -66,9 +66,6 @@ Loop:
 Done:
         RET
 
-
-// fma8() don't need this?
-
 // func addScaled8(dst, x, y *float64, a float64, n int)
 // dst[i] = a*x[i] + y[i]
 TEXT ·addScaled8(SB), NOSPLIT|NOFRAME, $0-40

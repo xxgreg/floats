@@ -75,21 +75,6 @@ func ScaleTo(dst []float64, a float64, x []float64) []float64 {
 	return dst
 }
 
-func AddScaled(dst []float64, a float64, x []float64) {
-	n := len(dst)
-	if len(x) != n {
-		panic(BadLen)
-	}
-	tail := n % 8
-	if n >= 8 {
-		//FIXME FMA isn't much faster than add scaled, so I'll just delete this.
-		fma8(&dst[0], &x[0], a, n-tail)
-	}
-	for i := n - tail; i < n; i++ {
-		dst[i] = a*x[i] + dst[i]
-	}
-}
-
 func AddScaledTo(dst, x []float64, a float64, y []float64) []float64 {
 	n := len(dst)
 	if len(x) != n || len(y) != n {
@@ -97,18 +82,13 @@ func AddScaledTo(dst, x []float64, a float64, y []float64) []float64 {
 	}
 	tail := n % 8
 	if n >= 8 {
-		//FIXME I've swapped the order of x and y somewhere. in x86?
+		//FIXME I've swapped the order of x and y somewhere?
 		addScaled8(&dst[0], &y[0], &x[0], a, n-tail)
 	}
 	for i := n - tail; i < n; i++ {
 		dst[i] = a*x[i] + y[i]
 	}
 	return dst
-}
-
-func DivTo(dst, x, y []float64) []float64 {
-	panic("TODO")
-	//TODO what about div by zero = NaN?
 }
 
 func SubTo(dst, x, y []float64) []float64 {
@@ -138,7 +118,5 @@ func add8_4(dst, a, b, c, d *float64, n int)
 func addConst8(dst, x *float64, c float64, n int)
 
 func scale8(dst, x *float64, c float64, n int)
-
-func fma8(dst, x *float64, a float64, n int)
 
 func addScaled8(dst, x, y *float64, a float64, n int)

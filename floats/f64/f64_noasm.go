@@ -19,16 +19,6 @@ func AddConst(c float64, dst []float64) {
 		dst[i] += c
 	}
 }
-func AddManyTo(dst, a, b, c, d []float64) []float64 {
-	n := len(dst)
-	if len(a) != n || len(b) != n || len(c) != n || len(d) != n {
-		panic(BadLen)
-	}
-	for i := 0; i < n; i++ {
-		dst[i] = a[i] + b[i] + c[i] + d[i]
-	}
-	return dst
-}
 
 func MulTo(dst, a, b []float64) []float64 {
 	if len(dst) != len(a) || len(dst) != len(b) {
@@ -40,12 +30,12 @@ func MulTo(dst, a, b []float64) []float64 {
 	return dst
 }
 
-func ScaleTo(dst []float64, c float64, s []float64) []float64 {
-	if len(dst) != len(s) || len(dst) != len(s) {
+func ScaleTo(dst []float64, a float64, x []float64) []float64 {
+	if len(dst) != len(x) || len(dst) != len(x) {
 		panic(BadLen)
 	}
 	for i := range dst {
-		dst[i] = s[i] * c
+		dst[i] = x[i] * a
 	}
 	return dst
 }
@@ -71,12 +61,13 @@ func SubTo(dst, a, b []float64) []float64 {
 	return dst
 }
 
-func DivTo(dst, a, b []float64) []float64 {
-	if len(dst) != len(a) || len(dst) != len(b) {
+func AddManyTo(dst, a, b, c, d []float64) []float64 {
+	n := len(dst)
+	if len(a) != n || len(b) != n || len(c) != n || len(d) != n {
 		panic(BadLen)
 	}
-	for i := range dst {
-		dst[i] = a[i] / b[i]
+	for i := 0; i < n; i++ {
+		dst[i] = a[i] + b[i] + c[i] + d[i]
 	}
 	return dst
 }
