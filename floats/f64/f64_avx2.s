@@ -3,11 +3,11 @@
 
 #include "textflag.h"
 
-// func addConst8(dst, a *float64, c float64, n int)
+// func addConst8(dst, x *float64, c float64, n int)
 TEXT ·addConst8(SB), NOSPLIT|NOFRAME, $0-32
 
     MOVQ    dst(FP), AX
-    MOVQ    a+8(FP), BX
+    MOVQ    x+8(FP), BX
     MOVSD   c+16(FP), X0
     MOVQ    n+24(FP), CX
 
@@ -36,11 +36,11 @@ Done:
     RET
 
 
-// func scale8(dst, a *float64, c float64, n int)
+// func scale8(dst, x *float64, c float64, n int)
 TEXT ·scale8(SB), NOSPLIT|NOFRAME, $0-32
 
     MOVQ    dst(FP), AX
-    MOVQ    a+8(FP), BX
+    MOVQ    x+8(FP), BX
     MOVSD   c+16(FP), X0
     MOVQ    n+24(FP), CX
 

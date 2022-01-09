@@ -106,15 +106,16 @@ func AddScaledTo(dst, x []float64, a float64, y []float64) []float64 {
 	return dst
 }
 
+//TODO rename to x,y
 func add8(dst, a, b *float64, n int)
 
 func mul8(dst, a, b *float64, n int)
 
 func add8_4(dst, a, b, c, d *float64, n int)
 
-func addConst8(dst, a *float64, c float64, n int)
+func addConst8(dst, x *float64, c float64, n int)
 
-func scale8(dst, a *float64, c float64, n int)
+func scale8(dst, x *float64, c float64, n int)
 
 func fma8(dst, x *float64, a float64, n int)
 
